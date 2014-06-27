@@ -1,0 +1,20 @@
+-- setting classpath to user variable
+USERCP=$(hadoop classpath):$(hbase classpath):/home/ubuntu/jar/project.jar
+
+-- Map Reduce Reviews
+
+hadoop jar project.jar map.reduce.amazon.reviews.ReviewsApplication /user/ubuntu/reviews/MoviesClean.tsv /user/ubuntu/reviews/processed
+
+
+-- Export Reviews to HBase
+
+java -cp $USERCP reviews.export.ReviewsExport /user/ubuntu/reviews/processed/part-r-00000
+
+
+-- Map Reduce Tweets
+
+hadoop jar project.jar map.reduce.twitter.tweets.TweetsApplication /user/ubuntu/tweets/result/000000_0 /user/ubuntu/tweets/processed
+
+-- Export Tweets to HBase
+
+java -cp $HDPCP tweets.export.TweetsExport /user/ubuntu/tweets/processed/part-m-00000

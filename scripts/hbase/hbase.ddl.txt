@@ -1,0 +1,18 @@
+-- create tables (looks like HBase keywords are case sensitive)
+
+create 'movie_reviews', 'reviews'
+
+create 'tweets', 'info'
+
+
+-- remove tables (Two steps 1. Disable 2. Drop)
+
+disable 'movie_reviews'
+
+drop 'movie_reviews'
+
+disable 'tweets'
+
+drop 'tweets'
+
+
