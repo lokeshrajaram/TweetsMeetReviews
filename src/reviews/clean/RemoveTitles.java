@@ -35,7 +35,14 @@ public final class RemoveTitles {
                     "shower", "cream", "light", "action", "the one", "haven",
                     "project", "attack", "japan", "mission", "stars",
                     "watching a movie", "friends", "marcus", "holly", "heater",
-                    "crumb", "big time", "proof", "harold", "bella", "chill"));
+                    "crumb", "big time", "proof", "harold", "bella", "chill",
+                    "sting", "mother", "unexpected", "hunter", "phone",
+                    "beautiful", "hoosiers", "redhead", "lucky", "sugar",
+                    "father", "grind", "ceremony", "water", "together",
+                    "housewife", "happy", "destiny", "shame", "shark", "saint",
+                    "wanted", "phone", "inside", "date night", "pizza",
+                    "america", "the girl", "the couple", "dragon", "church",
+                    "brother"));
 
     private RemoveTitles() {
         throw new AssertionError();
