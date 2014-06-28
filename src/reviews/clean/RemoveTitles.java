@@ -42,7 +42,11 @@ public final class RemoveTitles {
                     "housewife", "happy", "destiny", "shame", "shark", "saint",
                     "wanted", "phone", "inside", "date night", "pizza",
                     "america", "the girl", "the couple", "dragon", "church",
-                    "brother"));
+                    "brother", "miranda", "marathon", "whatever", "the middle",
+                    "what's going on", "basic", "smith", "princess", "panic",
+                    "terri", "parents", "all that", "gabriel", "linda",
+                    "america", "abandon", "fresh", "stick", "company", "honor",
+                    "others", "nailed", "nobody", "all me"));
 
     private RemoveTitles() {
         throw new AssertionError();
