@@ -13,7 +13,7 @@ REST APIs are built for consuming the results.
 
   
 ### Data Source
-    1. Twitter Stream
+    1. Twitter Stream (Twitter Streaming API)
 
     2. Amazon Reviews (Snap Dataset)
 
@@ -35,16 +35,16 @@ REST APIs are built for consuming the results.
     Get Reviews for Movie
     
 
-## Bootstrapping the Application(Involves: Script to Cleanup data & Importing to HBase)
+### Bootstrapping the Application(Involves: Script to Cleanup data & Importing to HBase)
 
 
-## Setup the cluster to receive Tweets continously(Involves: Flume)
+### Setup the cluster to receive Tweets continously(Involves: Flume)
 
 
-## Processing Jobs(Involves: Hadoop, HDFS, MapReduce, Hive)
+### Processing Jobs(Involves: Hadoop, HDFS, MapReduce, Hive)
 
 
-## Storing processed Tweets(Involves: Script to retrive results and store in HBase)
+### Storing processed Tweets(Involves: Script to retrive results and store in HBase)
 
 
-## Serving the processed result(Involves: Rest API powered by a web server)
+### Serving the processed result(Involves: Rest API powered by a web server)
