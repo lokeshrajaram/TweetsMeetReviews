@@ -1,0 +1,43 @@
+#!flask/bin/python
+from flask import abort, Flask, jsonify
+import happybase
+
+app = Flask(__name__)
+connection = happybase.Connection('<YOUR_HBASE_IP>')
+
+@app.route('/api/movie_reviews/<string:movie_name>', methods = ['GET'])
+def get_reviews_for(movie_name):
+    table = connection.table('movie_reviews')
+    row = table.row(movie_name)
+    if not row:
+        abort(404)
+    return jsonify( { 'movie_reviews' : row } )
+
+@app.route('/api/tweets', methods = ['GET'])
+def get_latest_tweets():
+    results = []
+    table = connection.table('tweets')
+    for key, data in table.scan(limit=100):
+        entry = {}
+        entry['tweet_id'] = key
+        entry['timestamp'] = data['info:created_at']
+        entry['review_id'] = data['info:review_title']
+        entry['text'] = data['info:text']
+        results.append(entry)
+    return jsonify( { 'tweets' : results } )
+
+@app.route('/api/tweets/<string:tweet_id>', methods = ['GET'])
+def get_next_batch_of_tweets(tweet_id):
+    results = []
+    table = connection.table('tweets')
+    for key, data in table.scan(row_start=tweet_id,limit=100):
+        entry = {}
+        entry['tweet_id'] = key
+        entry['timestamp'] = data['info:created_at']
+        entry['review_id'] = data['info:review_title']
+        entry['text'] = data['info:text']
+        results.append(entry)
+    return jsonify( { 'tweets' : results } )
+
+if __name__ == '__main__':
+    app.run(debug = True,host='0.0.0.0')
