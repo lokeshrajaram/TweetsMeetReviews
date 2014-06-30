@@ -15,6 +15,8 @@ java -cp $USERCP reviews.export.ReviewsExport /user/ubuntu/reviews/processed/par
 
 hadoop jar project.jar map.reduce.twitter.tweets.TweetsApplication /user/ubuntu/tweets/result/000000_0 /user/ubuntu/tweets/processed
 
+hadoop jar /home/ubuntu/jar/project.jar map.reduce.twitter.tweets.TweetsApplication /user/ubuntu/tweets/2014062517 /user/ubuntu/tweets/processed/2014062517
+
 -- Export Tweets to HBase
 
-java -cp $HDPCP tweets.export.TweetsExport /user/ubuntu/tweets/processed/part-m-00000
+java -cp $USERCP tweets.export.TweetsExport /user/ubuntu/tweets/processed/part-m-00000

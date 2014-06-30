@@ -53,7 +53,6 @@ public class TweetsMapper extends
 
                 if (text.indexOf(title) != -1) {
                     match = title;
-                    break;
                 }
 
             }

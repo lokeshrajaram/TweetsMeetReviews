@@ -46,7 +46,9 @@ public final class RemoveTitles {
                     "what's going on", "basic", "smith", "princess", "panic",
                     "terri", "parents", "all that", "gabriel", "linda",
                     "america", "abandon", "fresh", "stick", "company", "honor",
-                    "others", "nailed", "nobody", "all me"));
+                    "others", "nailed", "nobody", "all me", "shutter",
+                    "denied", "tornado", "brutal", "escape", "zombie", "toast",
+                    "cracking up", "eating", "bohemia", "tween", "the end"));
 
     private RemoveTitles() {
         throw new AssertionError();

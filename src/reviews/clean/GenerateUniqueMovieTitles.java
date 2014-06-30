@@ -43,7 +43,8 @@ public class GenerateUniqueMovieTitles {
         int count = 0;
         for (String title : titles) {
 
-            if (!RemoveTitles.blacklistTitles.contains(title)) {
+            if (!RemoveTitles.blacklistTitles.contains(title)
+                    && title.length() > 10) {
                 count++;
                 writer.write(title + "\n");
             }

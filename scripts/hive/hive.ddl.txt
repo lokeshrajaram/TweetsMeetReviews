@@ -35,6 +35,12 @@ LOCATION '/user/flume/tweets';
 
 -- load data based on partition
 
-LOAD DATA INPATH '/user/flume/tweets/2014/06/21/00Õ INTO TABLE default.tweets PARTITION (datehour='2014062100Õ);
-
 LOAD DATA INPATH '$FILE_PATHÕ INTO TABLE default.tweets PARTITION (datehour='$PARTIOTION_KEYÕ);
+
+(e.g) LOAD DATA INPATH '/user/flume/tweets/2014/06/21/00Õ INTO TABLE default.tweets PARTITION (datehour='2014062100Õ);
+
+
+
+-- selective load
+
+INSERT OVERWRITE DIRECTORY '/user/ubuntu/tweets/$PARTIOTION_KEY' select id, created_at, LOWER(text) from tweets where datehour='$PARTIOTION_KEY';
