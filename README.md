@@ -41,10 +41,10 @@ REST APIs are built for consuming the results.
     2. A standalone EC2 instance for Webserver with Ubuntu OS. Use setup.txt in server directory to setup webserver.    
 
 ##### HBase setup
-    1. Look for **"hbase.ddl.txt"** in scripts/hbase directory and create tables accordingly.
+    1. Look for hbase.ddl.txt in scripts/hbase directory and create tables accordingly.
     
 ##### Hive setup
-    1. Look for **"hive.ddl.txt"** in scripts/hive directory and create tables accordingly.
+    1. Look for hive.ddl.txt in scripts/hive directory and create tables accordingly.
     
 #### Exporting Jars
     1. Build a Jar out of this project and move it to the cluster. possibly in a jars directory in user home directory
@@ -54,11 +54,11 @@ REST APIs are built for consuming the results.
 (Involves: Script to Cleanup data & Importing to HBase)
 
     1.  Download snap dataset for reviews
-    2.  Use **reviews.clean.FormatReviews** to clean the movie reviews
-    3.  Use **reviews.clean.GenerateUniqueMovieTitles** with previous steps output as input to generate unique movie titles 
+    2.  Use reviews.clean.FormatReviews to clean the movie reviews
+    3.  Use reviews.clean.GenerateUniqueMovieTitles with previous steps output as input to generate unique movie titles 
     3.  Store the cleaned reviews and unique movie title files generated in previous steps into HDFS.
-    4.  Use **reviews.export.ReviewsExport** to export review into HBase datastore.
-    5.  If you want to update movie titles list repeat step 3 & use **"updatetitles.sh"** in scripts/bash directory.
+    4.  Use reviews.export.ReviewsExport to export review into HBase datastore.
+    5.  If you want to update movie titles list repeat step 3 & use updatetitles.sh in scripts/bash directory.
 
 ### Setup the cluster to receive Tweets (continuously)
 (Involves: Flume, HDFS)
@@ -74,7 +74,7 @@ REST APIs are built for consuming the results.
 
 ### Storing processed Tweets (Hourly)
 (Involves: HDFS, Script to retrieve results and store, HBase)
-    1.  Use **tweets.export.TweetsExport** to export the Tweets to HBase
+    1.  Use tweets.export.TweetsExport to export the Tweets to HBase
 
 ### Serving the processed result (continuously)
 (Involves: Rest API powered by a web server)
@@ -86,7 +86,7 @@ REST APIs are built for consuming the results.
 
 ### DRY - making life easier... (CronJob)
     For convenience a script has been created which does all the above steps chained together.
-    Also, the script is set in the crontab to run for every hour. Look for **"crontab.conf"** in conf/crontab.conf
-    Look for **"tweetprocessor.sh"** in scripts/bash directory. This script can also be invoked as required.
+    Also, the script is set in the crontab to run for every hour. Look for crontab.conf in conf/crontab.conf
+    Look for tweetprocessor.sh in scripts/bash directory. This script can also be invoked as required.
     
 ### Testing the application
