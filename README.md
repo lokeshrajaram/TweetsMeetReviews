@@ -28,11 +28,11 @@ REST APIs are built for consuming the results.
 
 ### REST API
 
-    Get Tweets (Limited by 100)
+    1. Get Tweets (Limited by 100)
 
-    Get Tweets from ID (Limited by 100)
+    2. Get Tweets from ID (Limited by 100)
 
-    Get Reviews for Movie
+    3. Get Reviews for Movie
 
 ### Environment Setup
 #### CLUSTER:
@@ -68,18 +68,21 @@ REST APIs are built for consuming the results.
 
 ### Processing Jobs (Hourly)
 (Involves: Hadoop, HDFS, MapReduce, Hive)
+
     1. Use Hive to partition data for an hour and extract Tweet text
     2. Use MapReduce Job to possibly associate Tweets with Reviews
     3. Step 1 & 2 must be done for every hour
 
 ### Storing processed Tweets (Hourly)
 (Involves: HDFS, Script to retrieve results and store, HBase)
+
     1.  Use tweets.export.TweetsExport to export the Tweets to HBase
 
 ### Serving the processed result (continuously)
 (Involves: Rest API powered by a web server)
 
  Three REST APIs are published for consuming results
+ 
     1. Get Tweets (results limited by 100)
     2. Get Tweets from ID (Tweets from that ID is given, results limited by 100)
     3. Get Reviews for a Movie (Fetches all the reviews for the movie) 
