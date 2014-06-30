@@ -1,28 +1,32 @@
 # TweetsMeetReviews
-An application to bind tweets with reviews.
 
-### Introduction
+The idea is to get tweets from Twitter Stream and possibly associate them with the reviews in the system.
 
-This idea is to get tweets from Twitter Stream and possibly associate them with the reviews in the system.
-
-User tweet about a product(Movie), tweet get streamed by Twitter Streaming API.
+User Tweet about a product(e.g Movie), Tweet get streamed by Twitter Streaming API.
 Tweets are received on the cluster using Apache Flume and stored in Hadoop HDFS.
-The stored tweets are partitioned hourly and analyzed for possible association 
-with a review by a MapReduce job. The processed tweets are then stored in HBase.
+The stored Tweets are partitioned hourly and analyzed for possible association 
+with a review by a MapReduce job. The processed Tweets are then stored in HBase.
 
 Reviews are loaded in to HBase as well, at the bootstrapping of the application.
 
-REST APIs are built for consuming the results and reviews.
+REST APIs are built for consuming the results.
 
   
-## Data Source
+### Data Source
+    1. Twitter Stream
+
+    2. Amazon Reviews (Snap Dataset)
 
 
+### Volume, Velocity, and Variety
+    1. Volume: Movie Reviews 1 GB(~800,000 records: ~12,000 Unique Movie Titles)
+               Tweets processed (~1 Million tweets per day)
+    
+    2. Velocity: The rate at which the tweets are received from Twitter Streaming API(~20,000-40,000 tweets per hour)
+    
+    3. Variety: Two different data sources used (1. Tweets 2. Reviews)  
 
-## Volume, Velocity, and Variety
-
-
-## REST API
+### REST API
 
     Get Tweets (Limited by 100)
 
@@ -31,3 +35,16 @@ REST APIs are built for consuming the results and reviews.
     Get Reviews for Movie
     
 
+## Bootstrapping the Application(Involves: Script to Cleanup data & Importing to HBase)
+
+
+## Setup the cluster to receive Tweets continously(Involves: Flume)
+
+
+## Processing Jobs(Involves: Hadoop, HDFS, MapReduce, Hive)
+
+
+## Storing processed Tweets(Involves: Script to retrive results and store in HBase)
+
+
+## Serving the processed result(Involves: Rest API powered by a web server)
