@@ -11,6 +11,10 @@ Reviews are loaded in to HBase as well, at the bootstrapping of the application.
 
 REST APIs are built for consuming the results.
 
+Pipeline
+-----------------
+
+![alt text](img/pipeline.png "Complete pipeline for Twests Meet Reviews")
   
 ### Data Source
     1. Twitter Stream (Twitter Streaming API)
