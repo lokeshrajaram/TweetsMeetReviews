@@ -14,7 +14,7 @@ REST APIs are built for consuming the results.
 Pipeline
 -----------------
 
-![alt text](img/pipeline.png "Complete pipeline for Twests Meet Reviews")
+![alt text](img/pipeline.png "Complete pipeline for Tweets Meet Reviews")
   
 ### Data Source
     1. Twitter Stream (Twitter Streaming API)
