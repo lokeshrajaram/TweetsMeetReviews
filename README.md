@@ -102,4 +102,4 @@ REST APIs are built for consuming the results.
     Look for tweetprocessor.sh in scripts/bash directory. This script can also be invoked as required.
     
 ### Testing the application
-    Used JUnit & Jmeter to test my components.
+    Used JUnit & Jmeter to test my some of my components.

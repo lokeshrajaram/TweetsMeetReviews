@@ -25,7 +25,7 @@ public class FormatReviews {
 
     }
 
-    private static void processFile(String fileInput, String fileOutput)
+    public static void processFile(String fileInput, String fileOutput)
             throws IOException {
 
         int count = 0;

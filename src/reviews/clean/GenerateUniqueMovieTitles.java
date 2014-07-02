@@ -21,7 +21,7 @@ public class GenerateUniqueMovieTitles {
 
     }
 
-    private static void processFile(String fileName, String output)
+    public static void processFile(String fileName, String output)
             throws IOException {
 
         SortedSet<String> titles = new TreeSet<String>();
