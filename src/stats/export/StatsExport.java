@@ -1,8 +1,10 @@
 package stats.export;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 
 import org.apache.hadoop.conf.Configuration;
@@ -31,6 +33,8 @@ public class StatsExport {
         Configuration hbaseConfig = HBaseConfiguration.create();
 
         HTable htable = new HTable(hbaseConfig, "tweets_stats");
+
+        HTable htableCounts = new HTable(hbaseConfig, "counts");
 
         try {
             String line = null;
@@ -61,9 +65,54 @@ public class StatsExport {
                                 + records);
                     }
 
+                    String countLine = null;
+
+                    BufferedReader br = new BufferedReader(new FileReader(
+                            "/home/ubuntu/stats/counts/count.log"));
+
+                    long newTweetCount = 0;
+                    long newMatchCount = 0;
+
+                    while ((countLine = br.readLine()) != null) {
+
+                        String[] counts = countLine.split(",");
+
+                        newTweetCount = Long.parseLong(counts[0])
+                                + Long.parseLong(tokens[1]);
+
+                        newMatchCount = Long.parseLong(counts[1])
+                                + Long.parseLong(tokens[2]);
+
+                        Put putcounts = new Put("count".getBytes());
+
+                        putcounts.add("info".getBytes(),
+                                "tweet_count".getBytes(),
+                                String.valueOf(newTweetCount).getBytes());
+
+                        putcounts.add("info".getBytes(),
+                                "match_count".getBytes(),
+                                String.valueOf(newMatchCount).getBytes());
+
+                        htableCounts.put(putcounts);
+                    }
+
+                    br.close();
+
+                    BufferedWriter bwr = new BufferedWriter(new FileWriter(
+                            "/home/ubuntu/stats/counts/count.log"));
+
+                    bwr.write(newTweetCount + "," + newMatchCount);
+
+                    bwr.close();
+
+                    System.out.println("Tweet Count:: " + newTweetCount);
+
+                    System.out.println("Match Count:: " + newMatchCount);
+
                 }
 
             }
+
             long endTime = System.nanoTime();
 
             System.out.println("Total Records:: " + records);
@@ -76,12 +125,20 @@ public class StatsExport {
 
             htable.close();
 
+            htableCounts.flushCommits();
+
+            htableCounts.close();
+
         } finally {
             bufferedReader.close();
 
             htable.flushCommits();
 
             htable.close();
+
+            htableCounts.flushCommits();
+
+            htableCounts.close();
         }
 
     }
