@@ -10,15 +10,13 @@ import org.junit.Test;
 
 public class FormatReviewsTest {
 
-    private static final String input = "/Users/lokesh/Desktop/parse/Movies.txt";
-    private static final String output = "/Users/lokesh/Desktop/parse/MoviesClean.tsv";
-
     @Test
     public void testProcessFile() throws IOException {
 
-        FormatReviews.processFile(input, output);
+        FormatReviews.processFile(PathContants.input, PathContants.output);
 
-        BufferedReader br = new BufferedReader(new FileReader(output));
+        BufferedReader br = new BufferedReader(new FileReader(
+                PathContants.output));
 
         assertEquals(br.readLine() != null, true);
 
