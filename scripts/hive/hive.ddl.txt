@@ -44,3 +44,21 @@ LOAD DATA INPATH '$FILE_PATHÕ INTO TABLE default.tweets PARTITION (datehour='$PA
 -- selective load
 
 INSERT OVERWRITE DIRECTORY '/user/ubuntu/tweets/$PARTIOTION_KEY' select id, created_at, LOWER(text) from tweets where datehour='$PARTIOTION_KEY';
+
+
+
+-- create table tweest_stats
+
+CREATE EXTERNAL TABLE tweets_stats (
+  id BIGINT,
+  created_at STRING,
+  text STRING,
+  review_title STRING
+)
+PARTITIONED BY (datehour INT)
+ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t'
+LOCATION '/user/ubuntu/tweets/processed';
+
+LOAD DATA INPATH '/user/ubuntu/tweets/processed/$PARTIOTION_KEYÕ INTO TABLE default.tweets_stats PARTITION (datehour='$PARTIOTION_KEYÕ);
+
+LOAD DATA INPATH '/user/ubuntu/tweets/processed/2014062908Õ INTO TABLE default.tweets_stats PARTITION (datehour='2014062908');

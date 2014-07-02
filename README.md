@@ -81,6 +81,15 @@ REST APIs are built for consuming the results.
 ### Serving the processed result (continuously)
 (Involves: Rest API powered by a web server)
 
+### Collecting Metrics (Hourly)
+(Involves: Hive, HDFS, Script to retrieve results and store, HBase)
+
+    1.  Hive collects the metrics and hand it over to a script to store it in HBase.
+        Use stats.export.StatsExport to export the Metrics to HBase
+
+### Serving the processed result (continuously)
+(Involves: Rest API powered by a web server)
+
  Three REST APIs are published for consuming results
  
     1. Get Tweets (results limited by 100)
@@ -93,3 +102,4 @@ REST APIs are built for consuming the results.
     Look for tweetprocessor.sh in scripts/bash directory. This script can also be invoked as required.
     
 ### Testing the application
+    Used JUnit & Jmeter to test my components.
