@@ -10,6 +10,12 @@ import org.apache.hadoop.mapreduce.lib.input.TextInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import org.apache.hadoop.util.Tool;
 
+/**
+ * ReviewsDriver prepares and configures required parameters to launch the
+ * actual map reduce job.
+ * 
+ * @author Lokesh Rajaram
+ */
 public class ReviewsDriver extends Configured implements Tool {
     @Override
     public int run(String[] args) throws Exception {

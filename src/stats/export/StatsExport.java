@@ -12,6 +12,12 @@ import org.apache.hadoop.hbase.HBaseConfiguration;
 import org.apache.hadoop.hbase.client.HTable;
 import org.apache.hadoop.hbase.client.Put;
 
+/**
+ * StatsExport is a wrapper around HBase rest api to move metrics data from HDFS
+ * to HBase.
+ * 
+ * @author Lokesh Rajaram
+ */
 public class StatsExport {
 
     public static final String SEPARATOR_FIELD = new String(new char[] { 1 });

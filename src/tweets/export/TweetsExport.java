@@ -12,6 +12,12 @@ import org.apache.hadoop.hbase.HBaseConfiguration;
 import org.apache.hadoop.hbase.client.HTable;
 import org.apache.hadoop.hbase.client.Put;
 
+/**
+ * TweetsExport is a wrapper around HBase rest api to move processed tweets data
+ * from HDFS to HBase.
+ * 
+ * @author Lokesh Rajaram
+ */
 public class TweetsExport {
 
     /**

@@ -11,6 +11,12 @@ import java.util.Map;
 
 import au.com.bytecode.opencsv.CSVWriter;
 
+/**
+ * FormatReviews crunches the data from amazon snap data set makes it a flat
+ * structured data spanning one line. pairs.
+ * 
+ * @author Lokesh Rajaram
+ */
 public class FormatReviews {
 
     public static void main(String[] args) throws IOException {

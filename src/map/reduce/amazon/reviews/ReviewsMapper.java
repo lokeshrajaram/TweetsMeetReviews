@@ -6,6 +6,12 @@ import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Mapper;
 
+/**
+ * ReviewsMapper extracts the title and review text and emits them as key value
+ * pairs.
+ * 
+ * @author Lokesh Rajaram
+ */
 public class ReviewsMapper extends Mapper<LongWritable, Text, Text, Text> {
 
     @Override

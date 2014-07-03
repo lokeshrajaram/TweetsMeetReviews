@@ -13,6 +13,12 @@ import org.apache.hadoop.io.NullWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Mapper;
 
+/**
+ * TweetsMapper compares the tweet with the list of available movie titles and
+ * if found a match writes the matching title.
+ * 
+ * @author Lokesh Rajaram
+ */
 public class TweetsMapper extends
         Mapper<LongWritable, Text, NullWritable, Text> {
 

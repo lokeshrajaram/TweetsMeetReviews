@@ -6,6 +6,12 @@ import java.util.Iterator;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Reducer;
 
+/**
+ * ReviewsReducer compiles the results and presents it in the form of title and
+ * list of reviews.
+ * 
+ * @author Lokesh Rajaram
+ */
 public class ReviewsReducer extends Reducer<Text, Text, Text, Text> {
 
     @Override

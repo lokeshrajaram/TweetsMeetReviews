@@ -7,6 +7,12 @@ import java.io.IOException;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
+/**
+ * GenerateUniqueMovieTitles crunches the flattened review results produced by @see
+ * {@link FormatReviews} and colects the unique movie titles and sorts them.
+ * 
+ * @author Lokesh Rajaram
+ */
 public class GenerateUniqueMovieTitles {
 
     public static void main(String[] args) throws IOException {

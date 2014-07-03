@@ -12,8 +12,16 @@ import org.apache.hadoop.mapreduce.lib.input.TextInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import org.apache.hadoop.util.Tool;
 
+/**
+ * TweetsDriver prepares and configures required parameters to launch the actual
+ * map reduce job.
+ * 
+ * @author Lokesh Rajaram
+ */
+
 public class TweetsDriver extends Configured implements Tool {
 
+    // location of the file in distributed cache
     private static final String hdfsCacheFile = "/user/ubuntu/reviews/MovieTitles.txt";
 
     @Override
