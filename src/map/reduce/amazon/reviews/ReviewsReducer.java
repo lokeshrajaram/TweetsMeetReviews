@@ -14,6 +14,8 @@ import org.apache.hadoop.mapreduce.Reducer;
  */
 public class ReviewsReducer extends Reducer<Text, Text, Text, Text> {
 
+    private static final String SEPARATE_BY = "\t";
+
     @Override
     public void reduce(Text key, Iterable<Text> values, Context context)
             throws IOException, InterruptedException {
@@ -26,7 +28,7 @@ public class ReviewsReducer extends Reducer<Text, Text, Text, Text> {
             buff.append(iterator.next().toString());
 
             if (iterator.hasNext()) {
-                buff.append("\t");
+                buff.append(SEPARATE_BY);
             }
 
         }

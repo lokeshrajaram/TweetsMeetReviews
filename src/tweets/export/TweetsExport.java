@@ -11,6 +11,7 @@ import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.hbase.HBaseConfiguration;
 import org.apache.hadoop.hbase.client.HTable;
 import org.apache.hadoop.hbase.client.Put;
+import org.apache.log4j.Logger;
 
 /**
  * TweetsExport is a wrapper around HBase rest api to move processed tweets data
@@ -20,13 +21,22 @@ import org.apache.hadoop.hbase.client.Put;
  */
 public class TweetsExport {
 
+    private static Logger logger = Logger.getLogger(TweetsExport.class);
+
+    private static final String SEPARATOR = "\t";
+    private static final String TABLE_TWEETS = "tweets";
+    private static final String COLUMN_FAMILY = "info";
+    private static final String COLUMN_1 = "created_at";
+    private static final String COLUMN_2 = "text";
+    private static final String COLUMN_3 = "review_title";
+
     /**
      * @param args
      * @throws IOException
      */
     public static void main(String[] args) throws IOException {
         if (args.length != 1) {
-            System.out.println("Usage: HdfsRead <hdfs_input_path>");
+            logger.error("Usage: HdfsRead <hdfs_input_path>");
             System.exit(1);
         }
         String fromHdfsFile = args[0];
@@ -36,7 +46,7 @@ public class TweetsExport {
 
         Path path = new Path(fromHdfsFile);
         if (!fileSystem.exists(path)) {
-            System.out.println("File " + fromHdfsFile + " does not exist");
+            logger.info("File " + fromHdfsFile + " does not exist");
             return;
         }
 
@@ -45,7 +55,7 @@ public class TweetsExport {
 
         Configuration hbaseConfig = HBaseConfiguration.create();
 
-        HTable htable = new HTable(hbaseConfig, "tweets");
+        HTable htable = new HTable(hbaseConfig, TABLE_TWEETS);
 
         try {
             String line = null;
@@ -55,7 +65,7 @@ public class TweetsExport {
 
                 records++;
 
-                String[] tokens = line.split("\t");
+                String[] tokens = line.split(SEPARATOR);
 
                 if (tokens.length == 4) {
 
@@ -63,19 +73,19 @@ public class TweetsExport {
 
                     Put put = new Put(newKey);
 
-                    put.add("info".getBytes(), "created_at".getBytes(),
+                    put.add(COLUMN_FAMILY.getBytes(), COLUMN_1.getBytes(),
                             tokens[1].getBytes());
 
-                    put.add("info".getBytes(), "text".getBytes(),
+                    put.add(COLUMN_FAMILY.getBytes(), COLUMN_2.getBytes(),
                             tokens[2].getBytes());
 
-                    put.add("info".getBytes(), "review_title".getBytes(),
+                    put.add(COLUMN_FAMILY.getBytes(), COLUMN_3.getBytes(),
                             tokens[3].getBytes());
 
                     htable.put(put);
 
                     if (records % 10000 == 0) {
-                        System.out.println("No of records inserted so far... "
+                        logger.info("No of records inserted so far... "
                                 + records);
                     }
 
@@ -84,9 +94,9 @@ public class TweetsExport {
             }
             long endTime = System.nanoTime();
 
-            System.out.println("Total Records:: " + records);
+            logger.info("Total Records:: " + records);
 
-            System.out.println("Time Taken:: " + (endTime - startTime) + " ns");
+            logger.info("Time Taken:: " + (endTime - startTime) + " ns");
 
             bufferedReader.close();
 

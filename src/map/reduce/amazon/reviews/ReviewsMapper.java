@@ -14,11 +14,13 @@ import org.apache.hadoop.mapreduce.Mapper;
  */
 public class ReviewsMapper extends Mapper<LongWritable, Text, Text, Text> {
 
+    private static final String SPLITY_BY = "\t";
+
     @Override
     public void map(LongWritable key, Text value, Context context)
             throws IOException, InterruptedException {
 
-        String[] tokens = value.toString().split("\t");
+        String[] tokens = value.toString().split(SPLITY_BY);
 
         if (tokens.length == 10) {
 

@@ -17,11 +17,14 @@ import org.apache.hadoop.util.Tool;
  * @author Lokesh Rajaram
  */
 public class ReviewsDriver extends Configured implements Tool {
+
+    private static final String APP_NAME = "Reviews Application";
+
     @Override
     public int run(String[] args) throws Exception {
 
         Configuration conf = new Configuration();
-        Job job = new Job(conf, "Reviews Application");
+        Job job = new Job(conf, APP_NAME);
 
         job.setJarByClass(ReviewsApplication.class);
 

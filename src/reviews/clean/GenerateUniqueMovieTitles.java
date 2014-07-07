@@ -7,6 +7,8 @@ import java.io.IOException;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
+import org.apache.log4j.Logger;
+
 /**
  * GenerateUniqueMovieTitles crunches the flattened review results produced by @see
  * {@link FormatReviews} and colects the unique movie titles and sorts them.
@@ -15,11 +17,15 @@ import java.util.TreeSet;
  */
 public class GenerateUniqueMovieTitles {
 
+    private static Logger logger = Logger
+            .getLogger(GenerateUniqueMovieTitles.class);
+
+    private static final String SEPARATOR = "\t";
+
     public static void main(String[] args) throws IOException {
 
         if (args.length != 2) {
-            System.out
-                    .println("Both Input File Path & Output File Path Required");
+            logger.error("Both Input File Path & Output File Path Required");
             return;
         }
 
@@ -39,7 +45,7 @@ public class GenerateUniqueMovieTitles {
 
         while ((line = br.readLine()) != null) {
 
-            String[] lineArray = line.split("\t");
+            String[] lineArray = line.split(SEPARATOR);
 
             if (lineArray.length == 10) {
                 titles.add(lineArray[1]);
@@ -56,7 +62,7 @@ public class GenerateUniqueMovieTitles {
             }
         }
 
-        System.out.println("Total Unique Titles:: " + count);
+        logger.info("Total Unique Titles:: " + count);
 
         br.close();
         writer.close();

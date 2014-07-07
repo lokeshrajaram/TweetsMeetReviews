@@ -24,6 +24,8 @@ public class TweetsMapper extends
 
     private final List<String> titles = new ArrayList<String>();
     public static final String SEPARATOR_FIELD = new String(new char[] { 1 });
+    private static final String NO_MATCH = "NO MATCH";
+    private static final String NEW_SEPARATOR = "\t";
 
     @Override
     public void setup(Context context) throws IOException {
@@ -53,7 +55,7 @@ public class TweetsMapper extends
 
             String text = tokens[2];
 
-            String match = "NO MATCH";
+            String match = NO_MATCH;
 
             for (String title : titles) {
 
@@ -63,9 +65,10 @@ public class TweetsMapper extends
 
             }
 
-            StringBuilder builder = new StringBuilder(tokens[0]).append("\t")
-                    .append(tokens[1]).append("\t").append(tokens[2])
-                    .append("\t").append(match);
+            StringBuilder builder = new StringBuilder(tokens[0])
+                    .append(NEW_SEPARATOR).append(tokens[1])
+                    .append(NEW_SEPARATOR).append(tokens[2])
+                    .append(NEW_SEPARATOR).append(match);
 
             context.write(null, new Text(builder.toString()));
 

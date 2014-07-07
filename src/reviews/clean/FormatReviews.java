@@ -9,6 +9,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.log4j.Logger;
+
 import au.com.bytecode.opencsv.CSVWriter;
 
 /**
@@ -19,11 +21,16 @@ import au.com.bytecode.opencsv.CSVWriter;
  */
 public class FormatReviews {
 
+    private static Logger logger = Logger.getLogger(FormatReviews.class);
+
+    private static final String PRODUCT = "product/title:";
+    private static final String UNKNOWN = "Unknown";
+    private static final char SEPARATOR = '\t';
+
     public static void main(String[] args) throws IOException {
 
         if (args.length != 2) {
-            System.out
-                    .println("Both Input File Path & Output File Path Required");
+            logger.error("Both Input File Path & Output File Path Required");
             return;
         }
 
@@ -43,7 +50,7 @@ public class FormatReviews {
         BufferedReader br = new BufferedReader(new FileReader(fileInput));
         String line;
 
-        CSVWriter writer = new CSVWriter(new FileWriter(fileOutput), '\t',
+        CSVWriter writer = new CSVWriter(new FileWriter(fileOutput), SEPARATOR,
                 CSVWriter.NO_QUOTE_CHARACTER);
 
         while ((line = br.readLine()) != null) {
@@ -52,11 +59,11 @@ public class FormatReviews {
 
                 String[] lineArray = line.split(": ");
 
-                if (line.contains("product/title:")) {
-                    tokens.add(lineArray.length == 1 ? "Unknown" : sqlImport
+                if (line.contains(PRODUCT)) {
+                    tokens.add(lineArray.length == 1 ? UNKNOWN : sqlImport
                             .escapeCharacters(lineArray[2].toLowerCase()));
                 } else {
-                    tokens.add(lineArray.length == 1 ? "Unknown" : lineArray[1]
+                    tokens.add(lineArray.length == 1 ? UNKNOWN : lineArray[1]
                             .replaceAll("\\\\", "").trim());
                 }
 
@@ -77,7 +84,7 @@ public class FormatReviews {
         br.close();
         writer.close();
 
-        System.out.println("Total Records Count:: " + count);
+        logger.info("Total Records Count:: " + count);
     }
 
     private String escapeCharacters(String input) {
@@ -101,7 +108,6 @@ public class FormatReviews {
         regexMap.put("\\(.*\\)", "");
         regexMap.put("\\\\", "");
         regexMap.put("&quot;", "");
-
         for (String s : regexMap.keySet()) {
             input = input.replaceAll(s, regexMap.get(s));
         }

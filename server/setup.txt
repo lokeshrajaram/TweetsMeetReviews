@@ -1,0 +1,20 @@
+# Python setup
+wget https://bootstrap.pypa.io/ez_setup.py -O - | sudo python
+sudo easy_install pip
+sudo pip install virtualenv
+sudo pip install virtualenvwrapper
+
+# virtualenvwrapper setup
+echo $'\n'"export WORKON_HOME=$HOME/.virtualenvs" >> ~/.bash_profile
+echo "export PROJECT_HOME=$HOME" >> ~/.bash_profile
+echo "source /usr/local/bin/virtualenvwrapper.sh"$'\n' >> ~/.bash_profile
+source ~/.bash_profile
+
+#other setup
+mkdir project
+
+mkvirtualenv flask
+
+pip install flask
+pip install happybase
+
